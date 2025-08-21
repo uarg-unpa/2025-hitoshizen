@@ -54,6 +54,8 @@ Si lees un número (como con `nextInt()`) y luego una línea de texto (con `next
 scanner.nextLine(); // Limpia el buffer
 ```
 
+
+
 Ejemplo completo:
 ```java
 System.out.print("Ingresa un número entero: ");
