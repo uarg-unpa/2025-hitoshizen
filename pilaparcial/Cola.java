@@ -27,34 +27,40 @@ public class Cola{
          elemcola[ultimo] = elem;
       }
    }
-   
-   public int borrar(){
-      int aux = this.elemcola[0];
-      for(int i = 0; i<this.ultimo; i++){
-        this.elemcola[i] = this.elemcola[i+1];
-        this.ultimo--;
+   public int sacar() {
+      if (!estaVacia()) {
+         int elem = elemcola[1];
+         ultimo--;
+         return elem;
+      } else {
+         System.out.println("La cola esta vacia.");
+         return -1;
       }
-      return aux;
-    }
-    public void vaciar(){
-        this.ultimo = 0;
-    }
-   public boolean masElementos(Cola cola1, Cola cola2) {
-    Cola aux1 = new Cola(maxcola);
-    Cola aux2 = new Cola(maxcola);
-    int c1 = 0, c2 = 0;
-      while (!cola1.estaVacia() || !cola2.estaVacia()) {
-         if (!cola1.estaVacia()) {
-               int elem1 = cola1.borrar();
-               aux1.insertar(elem1);
-               c1++;
+   }
+   public boolean masElementos(Cola q2){
+      ColaInt aux1 = new ColaInt();
+      ColaInt aux2 = new ColaInt();
+      int contador1 = 0;
+      int contador2 = 0;
+      while(!this.estaVacia()){
+         aux1.insertar(this.sacar());
+         contador1++;
          }
-         if (!cola2.estaVacia()) {
-               int elem2 = cola2.borrar();
-               aux2.insertar(elem2);
-               c2++;
-         }
+      while(!q2.estaVacia()){
+         aux2.insertar(q2.sacar());
+         contador2++;
       }
-      return c1 > c2;
+      while(!aux1.estaVacia()){
+         this.insertar(aux1.borrar());
+      }
+      while(!aux2.estaVacia()){
+         q2.insertar(aux2.borrar());
+      }
+
+      if(contador1 > contador2){
+         return true;
+      } else {
+         return false;
+      }
    } 
 }
